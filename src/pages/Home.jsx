@@ -19,6 +19,8 @@ const Home = () => {
     currentPage: state.filter.currentPage,
     sortType: state.filter.Sort?.sortProperty,
   }));
+
+
   const { searchValue } = React.useContext(SearchContext);
 
   const [items, setItems] = React.useState([]);
@@ -50,8 +52,11 @@ const Home = () => {
   React.useEffect(() => {
     setIsLoading(true);
 
-    const sortBy = sortType.replace('-', '');
-    const order = sortType.includes('-') ? 'asc' : 'desc';
+
+
+
+    const sortBy = sortType ? sortType.replace('-', '') : null;
+    const order = sortType ? sortType.includes('-') ? 'asc' : 'desc' : null;
     const category = categoryId > 0 ? `&category=${categoryId}` : '';
     const search = searchValue ? `&search=${searchValue}` : '';
 
@@ -68,6 +73,8 @@ const Home = () => {
       });
 
     window.scrollTo(0, 0);
+
+
   }, [categoryId, sortType, searchValue, currentPage]);
 
   React.useEffect(() => {
@@ -81,6 +88,7 @@ const Home = () => {
 
   const pizzas = items.map((obj) => <PizzaBlock key={obj.id} {...obj} />);
   const skeletons = [...new Array(6)].map((_, index) => <Skeleton key={index} />);
+
 
   return (
     <div className="container">

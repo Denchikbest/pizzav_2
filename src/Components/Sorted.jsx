@@ -37,7 +37,7 @@ export function Sort() {
           />
         </svg>
         <b>Сортировка по:</b>
-        <span onClick={() => setOpen(!open)}> {sort.name} </span>
+        <span onClick={() => setOpen(!open)}> {sort?.name} </span>
       </div>
       {open && (
         <div className="sort__popup">
