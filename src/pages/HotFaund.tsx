@@ -1,10 +1,9 @@
 import React from 'react'
-import HotFaundBlock from '../Components/HotFaundBlock'
+import HotFaundBlock from '../Components/HotFaundBlock/index.tsx'
 
 export const HotFaund = () => {
   return  (
     <>
-  
   <HotFaundBlock/>
 
 

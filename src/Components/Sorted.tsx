@@ -1,8 +1,15 @@
-import React from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { setSort } from '../Redux/Slices/filterSlices';
+import { selectSort, setSort } from '../Redux/Slices/filterSlices';
 
-export const list = [
+type sortItem = {
+  name: string;
+sortProperty: string;}
+
+
+
+
+export const list:sortItem[] = [
   { name: 'популярности (DESC)', sortProperty: 'rating' },
   { name: 'популярности (ASC)', sortProperty: '-rating' },
   { name: 'цене (DESC)', sortProperty: 'price' },
@@ -13,17 +20,31 @@ export const list = [
 
 export function Sort() {
   const dispatch = useDispatch();
-  const sort = useSelector((state) => state.filter.Sort);
+  const sort = useSelector(selectSort);
+  const sortRef = useRef<HTMLDivElement>(null);
+  const [open, setOpen] = useState(false);
 
-  const [open, setOpen] = React.useState(false);
-
-  const onClickListItem = (obj) => {
+  const onClickListItem = (obj:sortItem) => {
     dispatch(setSort(obj));
     setOpen(false);
   };
 
+  useEffect(() => {
+    const handleClickOutside = (event:any) => {
+      if (sortRef.current && !sortRef.current.contains(event.target)) {
+        setOpen(false);
+      }
+    };
+
+    document.body.addEventListener('click', handleClickOutside);
+
+    return () => 
+      document.body.removeEventListener('click', handleClickOutside);
+  
+  }, []);
+
   return (
-    <div className="sort">
+    <div ref={sortRef} className="sort">
       <div className="sort__label">
         <svg
           width="10"

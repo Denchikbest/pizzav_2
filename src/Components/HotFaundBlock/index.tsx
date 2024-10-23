@@ -2,7 +2,7 @@ import React from 'react';
 
 import styles from './HotFaundBlock.module.scss'
 
-export const HotFaundBlock = () => {
+export const HotFaundBlock: React.FC= () => {
   return (
     <div className= {styles.root}>
       <h1 >

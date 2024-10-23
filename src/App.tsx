@@ -1,31 +1,28 @@
 import './scss/app.scss';
-import Header from './Components/Header';
-import HotFaund from './pages/HotFaund';
-import Home from './pages/Home';
-import Cart from './pages/Cart';
+import Header from './Components/Header.tsx';
+import { FullPizza } from './pages/FullPizza.tsx';
+import Home from './pages/Home.tsx';
+import Cart from './pages/Cart.tsx';
+import HotFaund from './pages/HotFaund.tsx';
+
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 
-export const SearchContext = React.createContext('');
+export const SearchContext = React.createContext({});
 
 function App() {
   const [searchValue, setSearchValue] = React.useState('');
-  
 
   return (
     <div className="wrapper">
-
-
-      
-      
-
       <SearchContext.Provider value={{ searchValue, setSearchValue }}>
         <Header />
         <div className="content">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/cart" element={<Cart />} />
-            <Route path="*" element={<HotFaund />} />
+            <Route path="/pizza/:id" element={<FullPizza />} /> {/* Правильный путь для FullPizza */}
+            <Route path="*" element={<HotFaund />} /> {/* Обработка всех несуществующих маршрутов */}
           </Routes>
         </div>
       </SearchContext.Provider>
