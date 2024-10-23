@@ -24,7 +24,7 @@ function App() {
             <Route path="/pizza/:id" element={<FullPizza />} /> {/* Правильный путь для FullPizza */}
             <Route path="*" element={<HotFaund />} /> {/* Обработка всех несуществующих маршрутов */}
           </Routes>
-        </div>
+        </div>фффффффффффффффффффффффффф
       </SearchContext.Provider>
     </div>
   );

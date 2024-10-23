@@ -101,7 +101,7 @@ const Home: React.FC = () => {
         <Categories value={categoryId} onChangeCategory={onChangeCategory} />
         <Sort />
       </div>
-      <h2 className="content__title">Все пиццы</h2>
+      <h2 className="content__title">Все ааааааааапиццы</h2>
       {status === 'error' ? (
         <div>
           <h2>Ошибка при загрузке пицц 😕</h2>
